@@ -15,8 +15,8 @@ dataframe=pandas.read_csv(file_path).set_index('Fruit')
 selection = streamlit.multiselect(
     label='Pick some fruits:', 
     options=list(dataframe.index), 
-    default=list(dataframe.index)[:2])
+    default=['Apple','Avacado'])
 
-streamlit.dataframe(dataframe[selection])
+streamlit.dataframe(dataframe.loc[selection])
 
 # adding in a multi select
