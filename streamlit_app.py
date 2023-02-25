@@ -12,8 +12,11 @@ file_path='https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.tx
 
 dataframe=pandas.read_csv(file_path).set_index('Fruit')
 
-streamlit.multiselect('Pick some fruits:', list(dataframe.index))
+selection = streamlit.multiselect(
+    label='Pick some fruits:', 
+    options=list(dataframe.index), 
+    default=list(dataframe.index)[:2])
 
-streamlit.dataframe(dataframe)
+streamlit.dataframe(dataframe[selection])
 
 # adding in a multi select
