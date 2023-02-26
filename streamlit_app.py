@@ -22,5 +22,5 @@ streamlit.dataframe(dataframe.loc[selection])
 
 streamlit.header('FruityVice Response')
 
-response = requests.get('https://fruitvice.com/api/fruit/watermelon')
+response = requests.get('https://fruityvice.com/api/fruit/watermelon')
 streamlit.text(response.json())
