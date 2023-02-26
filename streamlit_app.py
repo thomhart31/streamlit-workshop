@@ -33,19 +33,35 @@ dataframe_fruityvice = pandas.json_normalize(response.json())
 streamlit.dataframe(dataframe_fruityvice)
 
 # connecting to snowflake
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
+# my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+# my_cur = my_cnx.cursor()
 # my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 # my_data_row = my_cur.fetchone()
 # streamlit.text("Hello from Snowflake:")
 # streamlit.text(my_data_row)
 
-my_cur.execute("select * from fruit_load_list")
-# my_data_row = my_cur.fetchone()
-my_data_row = my_cur.fetchall()
-streamlit.text("The fruit load list contains:")
-streamlit.dataframe(my_data_row)
+# my_cur.execute("select * from fruit_load_list")
+# # my_data_row = my_cur.fetchone()
+# my_data_row = my_cur.fetchall()
+# streamlit.text("The fruit load list contains:")
+# streamlit.dataframe(my_data_row)
+
+# choice2 = streamlit.text_input(label='What would you like to add:')
+# streamlit.text(f'Thanks for adding: {choice2}')
+
+# my_cure.execute(f"insert into fruit_load_list values ('{choice2}')")
+
+if streamlit.button('Get Fruit Load List'):
+    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+    my_cur = my_cnx.cursor()
+    my_cur.execute("select * from fruit_load_list")
+    my_data_row = my_cur.fetchall()
+    streamlit.dataframe(my_data_row)
 
 choice2 = streamlit.text_input(label='What would you like to add:')
-streamlit.text(f'Thanks for adding: {choice2}')
-
+if streamlit.button('Add Fruit to List'):
+    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+    my_cur = my_cnx.cursor()
+    my_cure.execute(f"insert into fruit_load_list values ('{choice2}')")
+    streamlit.text(f'Thanks for adding: {choice2}')
+    
