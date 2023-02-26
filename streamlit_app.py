@@ -61,6 +61,6 @@ if streamlit.button('Get Fruit Load List'):
 choice2 = streamlit.text_input(label='What would you like to add:')
 if streamlit.button('Add Fruit to List'):
     my_cur = my_cnx.cursor()
-    my_cure.execute(f"insert into fruit_load_list values ('cake')")
+    my_cure.execute(f"insert into fruit_load_list values ('from streamlit')")
     streamlit.text(f'Thanks for adding: {choice2}')
     
